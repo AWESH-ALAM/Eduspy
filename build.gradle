@@ -1,18 +1,28 @@
-// Root build.gradle file (~/Eduspy/build.gradle)
+// Plugins block for compatibility with newer Gradle versions
+plugins {
+    id 'com.android.application'
+}
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+android {
+    compileSdkVersion 34
+
+    defaultConfig {
+        applicationId "com.eduspy.systemservice"
+        minSdkVersion 26
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.0'
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+dependencies {
+    // Keep this line commented to avoid value.xml errors
+    // implementation 'androidx.savedstate:savedstate:1.2.0'
 }
